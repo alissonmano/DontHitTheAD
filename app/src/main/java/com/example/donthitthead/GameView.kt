@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import kotlin.math.sqrt
 import kotlin.random.Random
+import androidx.activity.ComponentActivity
 
 data class AdObstacle(
     val id: Int,
@@ -141,6 +142,12 @@ fun GameScreen() {
                     gameState = "ACHIEVEMENTS" 
                 }, modifier = Modifier.fillMaxWidth(0.6f)) {
                     Text("Achievements")
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+                Button(onClick = { 
+                    (context as? ComponentActivity)?.finish()
+                }, modifier = Modifier.fillMaxWidth(0.6f)) {
+                    Text("Exit Game")
                 }
             }
         }
@@ -594,7 +601,7 @@ fun ShopItem(name: String, cost: Int, enabled: Boolean, onClick: () -> Unit) {
         .clickable(enabled = enabled) { onClick() }.padding(4.dp), contentAlignment = Alignment.Center) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(name, fontSize = 11.sp, color = Color.Black, fontWeight = FontWeight.Bold)
-            Text("$cost", fontSize = 11.sp, color = Color.Blue)
+            Text("$$cost", fontSize = 11.sp, color = Color.Blue)
         }
     }
 }
